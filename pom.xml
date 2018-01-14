@@ -298,8 +298,8 @@
             <scope>compile</scope>
 		</dependency>
 
-	
-		<!-- Usado para geração de arquivos Excel -->
+	<!-- 
+		Usado para geração de arquivos Excel
 		<dependency>
 		    <groupId>org.apache.poi</groupId>
 		    <artifactId>poi</artifactId>
@@ -307,7 +307,7 @@
 		    <scope>compile</scope>
 		</dependency>
 		
-		<!-- Usado para geração de arquivos PDF -->
+		Usado para geração de arquivos PDF
 		<dependency>
 		    <groupId>com.itextpdf</groupId>
 		    <artifactId>itextpdf</artifactId>
@@ -319,9 +319,9 @@
 		    <artifactId>itext</artifactId>
 		    <version>2.1.7</version>
 		</dependency>
-		<!-- fim para geração de arquivos PDF		 -->
+		fim para geração de arquivos PDF		
 	 
-		
+	 -->	
 		<!-- Tema do Bootstrap -->
     	<dependency>
     		<groupId>org.primefaces.themes</groupId>

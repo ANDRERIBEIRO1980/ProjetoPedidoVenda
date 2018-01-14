@@ -1,30 +1,27 @@
 package br.com.pedidovenda.controller;
 
-import java.io.File;
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.servlet.ServletContext;
 
-import org.apache.poi.hssf.usermodel.HSSFCellStyle;
+/*import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.ss.usermodel.IndexedColors;
+*/
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
 
-import com.lowagie.text.BadElementException;
+/*import com.lowagie.text.BadElementException;
 import com.lowagie.text.Document;
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.Image;
-
+*/
 import br.com.pedidovenda.model.Pedido;
 import br.com.pedidovenda.model.StatusPedido;
 import br.com.pedidovenda.repository.PedidoRepository;
@@ -68,7 +65,7 @@ public class PesquisaPedidosBean implements Serializable {
 		};
 	}
 	
-	public void preProcessPDF(Object document) throws IOException, BadElementException, DocumentException {
+	/*public void preProcessPDF(Object document) throws IOException, BadElementException, DocumentException {
 		 
 		Document pdf = (Document) document;
 		ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
@@ -105,7 +102,7 @@ public class PesquisaPedidosBean implements Serializable {
 			
 		}
 		
-	}
+	}*/
 	
 	public StatusPedido[] getStatuses() {
 		return StatusPedido.values();
