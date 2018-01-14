@@ -38,3 +38,17 @@ Projeto para geração de pedidos de venda desenvolvido com JSF, Primefaces, Hib
 **Relatório Pedidos Emitidos**
 ![image](https://user-images.githubusercontent.com/23662442/34916703-8296db8c-f923-11e7-91a3-19b16ef427dc.png)
 
+**Relatório Pedidos Emitidos em PDF**
+![image](https://user-images.githubusercontent.com/23662442/34916741-210a3a70-f924-11e7-9a7d-957748c92068.png)
+
+**Relatório Pedidos Emitidos em Excel**
+![image](https://user-images.githubusercontent.com/23662442/34916760-69cc8c36-f924-11e7-89c9-33d93792b4e0.png)
+
+**Email enviado do pedido gerado**
+![image](https://user-images.githubusercontent.com/23662442/34916787-b14d9f78-f924-11e7-9751-15f199400590.png)
+
+**Relatório básico de Produtos criado com JasperReports**
+![image](https://user-images.githubusercontent.com/23662442/34916821-385da616-f925-11e7-9633-5f172477d567.png)
+
+**Relatório básico de Pedidos emitidos criado com JasperReports**
+![image](https://user-images.githubusercontent.com/23662442/34916829-54c4f7a0-f925-11e7-8d18-c7eed97434ed.png)
