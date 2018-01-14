@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0"
+	xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+	
+	<persistence-unit name="PedidoPU" >
+		
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		
+		<properties>
+			
+			<property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+			<property name="javax.persistence.jdbc.user" value="pedidovenda"/>
+			<property name="javax.persistence.jdbc.password" value="pedidovenda1"/>
+			<property name="javax.persistence.jdbc.driver" value="oracle.jdbc.driver.OracleDriver"/>
+			<property name="hibernate.dialect" value="org.hibernate.dialect.Oracle10gDialect" />
+			
+			<property name="hibernate.show_sql" value="true"/>
+			<property name="hibernate.format_sql" value="true"/>
+			
+			<!-- validate | update | create | create-drop -->
+			<property name="hibernate.hbm2ddl.auto" value="update"/>
+			
+			
+			<!-- configuracao de pool de conexoes com banco de dados --> 
+			<!-- <property name="hibernate.connection.provider_class" 
+				value="org.hibernate.connection.C3P0ConnectionProvider" />
+				
+			<property name="hibernate.c3p0.max_size" value="20" />
+			<property name="hibernate.c3p0.min_size" value="7" />
+			<property name="hibernate.c3p0.acquire_increment" value="1" />
+			<property name="hibernate.c3p0.idle_test_period" value="300" />
+			<property name="hibernate.c3p0.max_statements" value="50" />
+			<property name="hibernate.c3p0.timeout" value="300" />  -->
+			
+		</properties>
+		
+	</persistence-unit>
+	
+</persistence>

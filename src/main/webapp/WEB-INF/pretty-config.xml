@@ -1,0 +1,59 @@
+<!-- <pretty-config xmlns="http://ocpsoft.org/schema/rewrite-config-prettyfaces" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xsi:schemaLocation="http://ocpsoft.org/schema/rewrite-config-prettyfaces
+                      http://ocpsoft.org/xml/ns/prettyfaces/rewrite-config-prettyfaces.xsd"> -->
+
+<pretty-config xmlns="http://ocpsoft.com/prettyfaces/3.3.2" 
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+               xsi:schemaLocation="http://ocpsoft.com/prettyfaces/3.3.2
+                                   		http://ocpsoft.com/xml/ns/prettyfaces/ocpsoft-pretty-faces-3.3.2.xsd">
+<!-- 
+	<url-mapping id="cadastroCliente">
+		<pattern value="/cadastro-clientes" />
+		<view-id value="/clientes/CadastroCliente.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="pesquisaCliente">
+		<pattern value="/pesquisa-cliente" />
+		<view-id value="/clientes/PesquisaClientes.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="cadastroPedido">
+		<pattern value="/cadastro-pedido" />
+		<view-id value="/pedidos/CadastroPedido.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="pesquisaPedido">
+		<pattern value="/pesquisa-pedido" />
+		<view-id value="/pedidos/PesquisaPedidos.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="cadastroProduto">
+		<pattern value="/cadastro-produto" />
+		<view-id value="/produtos/CadastroProduto.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="pesquisaProduto">
+		<pattern value="/pesquisa-produto" />
+		<view-id value="/produtos/PesquisaProdutos.xhtml" />
+	</url-mapping>	
+
+
+	<url-mapping id="cadastroUsuario">
+		<pattern value="/cadastro-usuario" />
+		<view-id value="/usuarios/CadastroUsuario.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="pesquisaUsuario">
+		<pattern value="/pesquisa-usuario" />
+		<view-id value="/usuarios/PesquisaUsuarios.xhtml" />
+	</url-mapping>	 
+	-->
+
+<!--    Configuração para adicionar o / no final da página-->
+<!-- <rewrite match="^(?!.*\.*).*" trailingSlash="append" redirect="301" /> -->
+    
+<!--    Para aceitar tanto maiúsculas quanto minuscular no caminho da URL, Somente usar essa configuração quando estiver com todas as páginas mapeadas-->
+<!--    <rewrite toCase="lowercase" redirect="chain" />-->
+
+</pretty-config>
