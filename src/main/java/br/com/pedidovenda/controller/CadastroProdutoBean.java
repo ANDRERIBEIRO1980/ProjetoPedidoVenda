@@ -8,7 +8,6 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import br.com.controller.CarregaDados;
 import br.com.pedidovenda.model.Categoria;
 import br.com.pedidovenda.model.Produto;
 import br.com.pedidovenda.repository.CategoriaRepository;

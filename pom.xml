@@ -94,12 +94,12 @@
 		
 
 		<!-- meu jar -->
-		<dependency>
+		<!-- <dependency>
 	        <groupId>br.com.teste</groupId>
 	        <artifactId>testesjar</artifactId>
 	        <version>0.0.1</version>
 	        <scope>compile</scope>
-		</dependency>
+		</dependency> -->
 
 		<!-- API de Servlet -->
 		<dependency>

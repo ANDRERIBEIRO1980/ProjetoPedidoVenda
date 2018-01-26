@@ -1,3 +1,7 @@
+INSTALAR JAR PARA O ORACLE
+install:install-file -Dfile=C:\AmbienteJava\ojdbc6.jar -DgroupId=oracle -DartifactId=ojdbc6 -Dversion=11.2.0.3 -Dpackaging=jar
+
+
 ****2.2****
 update = "dataValidade" 		--atualiza o campo com o id "dataValidade" id do servidor com os dados do modelo atualizado
 update = "frm:dataValidade"		--atualiza o campo com o id "dataValidade" id do client com os dados do modelo atualizado
