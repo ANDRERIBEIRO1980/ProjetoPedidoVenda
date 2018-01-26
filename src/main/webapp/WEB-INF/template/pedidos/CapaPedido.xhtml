@@ -45,6 +45,7 @@
 				<p:ajax event="itemSelect" update="documento" />				
 			</p:autoComplete>	
 
+			<!-- ignoreAutoUpdate="true", ignora o AutoUpdate do messages, para nao mostrar erros ao clicar no botao de abrir dialogo -->
 			<p:commandButton icon="ui-icon-search" title="Pesquisar" process="@this"
 	        	update="@none" disabled="#{cadastroPedidoBean.pedido.naoAlteravel}"
 	        	action="#{selecaoClienteBean.abrirDialogo}"

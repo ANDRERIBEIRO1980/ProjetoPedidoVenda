@@ -9,8 +9,8 @@ import javax.interceptor.InvocationContext;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
-@Interceptor
-@Transactional
+@Interceptor //cria um interceptador
+@Transactional // associa o qualificador que ira disparar esse interceptador
 public class TransactionInterceptor implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -35,6 +35,7 @@ public class TransactionInterceptor implements Serializable {
 				criador = true;
 			}
 
+			//continua a execucao
 			return context.proceed();
 		} catch (Exception e) {
 			if (trx != null && criador) {

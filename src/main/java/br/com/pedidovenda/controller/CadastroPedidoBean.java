@@ -47,7 +47,10 @@ public class CadastroPedidoBean  implements Serializable{
 	
 	private String sku;
 	
-	@Produces @PedidoEdicao
+	//produz um pedido que é a referencia em CadastroPedidoBean
+	//essa referencia poderá ser injeta atraves de @Inject @PedidoEdicao em outros beans como EmissaoPedidoBean ou CancelamentoPedidoBean por exemplo	
+	@Produces 
+	@PedidoEdicao
 	private Pedido pedido;	
 	
 	private List<Usuario> vendedores;
@@ -83,6 +86,8 @@ public class CadastroPedidoBean  implements Serializable{
 		pedido.setEnderecoEntrega(new EnderecoEntrega());
 	}
 	
+	//escuta o evento de emissao de pedido e atualiza o pedido aqui no bean CadastroPedidoBean
+	//esse evento será lancado por EmissaoPedidoBean quando realizar a emissao de pedido
 	public void pedidoAlterado(@Observes PedidoAlteradoEvent event){
 		this.pedido = event.getPedido();
 	}
@@ -138,6 +143,7 @@ public class CadastroPedidoBean  implements Serializable{
 	
 	public void atualizarQuantidade(ItemPedido item, int linha) {
 		if (item.getQuantidade() < 1) {
+			//nao pode excluir a primeira linha, com o index 0 pois é a linha com os inputs para adcionar novo item
 			if (linha == 0) {
 				item.setQuantidade(1);
 			} else {
@@ -151,7 +157,7 @@ public class CadastroPedidoBean  implements Serializable{
 	private boolean existeItemComProduto(Produto produto) {
 		boolean existeItem = false;
 		
-		for (ItemPedido item : this.getPedido().getItens()) {
+		for (ItemPedido item : pedido.getItens()) {
 			if (produto.equals(item.getProduto())) {
 				existeItem = true;
 				break;

@@ -120,7 +120,6 @@ public class UsuarioRepository implements Serializable {
 			
 			usuario = manager.createQuery("from Usuario where upper(email) = :email", Usuario.class)
 				      .setParameter("email", email.toUpperCase()).getSingleResult();
-			System.out.println(usuario);
 			
 		} catch (NoResultException e)
 		{

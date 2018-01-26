@@ -1,12 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration>
+    
+    <!-- destinos de saida -->
 	<Appenders>
+		
+		<!-- saida em console -->
 		<Console name="console" target="SYSTEM_OUT">
 			<PatternLayout pattern="%d %-5p [%c] %m%n" />
 		</Console>
+		
+	
+		<!-- saida em arquivo rotacionado diario -->	
 		<RollingFile name="rolling-file"
 			fileName="${sys:catalina.home}/logs/pedido-venda-day.log"
 			filePattern="${sys:catalina.home}/logs/pedido-venda-day %d{yyyy-MM-dd}-%i.log">
+			
+			<!-- 
+			    %d 		data, 
+			    %5-p 	prioridade
+			    %c   	categoria do erro
+			    %m 		mensagem 
+			-->
+			
 			<PatternLayout pattern="%d %-5p [%c] %m%n" />
  			<Policies>
 				<TimeBasedTriggeringPolicy />

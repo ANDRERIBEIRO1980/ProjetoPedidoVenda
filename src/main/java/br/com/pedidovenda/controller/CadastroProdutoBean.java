@@ -36,18 +36,13 @@ public class CadastroProdutoBean implements Serializable{
 	@Inject
 	private ProdutoService cadastroProdutoService;
 	
-	private CarregaDados carregarDados = new CarregaDados();
-	
-	
 	public void inicializar(){	
 		
-		carregarDados.inicio();
-		
-		System.out.println(carregarDados.retorna());
-		
 		System.out.println("inicializar");
+		
 		categoriasRaizes = categoriaRepositorio.raizes();
-		System.out.println("inicializar2");
+		
+		//PARA POPULAR A CATEGORIA AUTOMATICAMENTE QUANDO NA ALTERACAO
 		if (this.categoriaPai != null) {
 			filtrarSubCategorias();
 		}
@@ -79,13 +74,13 @@ public class CadastroProdutoBean implements Serializable{
 	public Produto getProduto() {
 		return produto;
 	}
+	
 	public void setProduto(Produto produto) {		
 		this.produto = produto;
-		
+		/*PRECISA COLOCAR ESSE IF PARA POPULAR OS COMBO DE CATEGORIA PAI*/
 		if (produto != null){
 			this.categoriaPai = this.produto.getCategoria().getCategoriaPai();
 		}
-		
 	}
 	
 	

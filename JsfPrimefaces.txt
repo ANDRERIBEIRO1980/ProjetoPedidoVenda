@@ -1,0 +1,387 @@
+****2.2****
+update = "dataValidade" 		--atualiza o campo com o id "dataValidade" id do servidor com os dados do modelo atualizado
+update = "frm:dataValidade"		--atualiza o campo com o id "dataValidade" id do client com os dados do modelo atualizado
+update = ":frm2:nomeInvertido"	--atualiza o campo com o id "nomeInvertido" em outro formulario com id="frm2" name container
+update = "frm"					--atualiza todos os campos do formulario que tem o id="frm"
+update = "@form"				--atualiza todos os campos do formulario que esse botao pertence
+update = "@all"					--atualiza todos os campos da tela
+update = "@this"				--
+update = "@none"				--nao atualiza nenhum campo
+update = "nomeInvertido quantidadePalavras" --atualiza os campos com os ids (nomeInvertido quantidadePalavras), ou separados por virgula
+
+--<p:ajax
+<p:inputText id="nome" value="#{inversaoNomeBean.nome}">
+<p:ajax listener="#{inversaoNomeBean.inverter}"	update="nomeInvertido" event="keyup" />
+</p:inputText>
+--serve para adicionar eventos em componentes, pode ser adicionado em um inputtext que irá disparar no evento padrao do input ou no evento requerido, no caso keyup do inputtext e ira atualizar o campo com id nomeInvertido
+--o padrao do process para o p:ajax é @this 
+
+<p:messages autoUpdate="true" />
+--atualiza as mensagens automaticamente em todas as requisicoes ajax, senao deverá colocar o id dessa message nas chamadas ajax
+
+
+
+****2.3****
+process = "@this login"	
+--indica quais componentes serão processados e atribuidos no modelo, ou seja quais campos serao validados na requisicao.
+--deve especificar os ids dos componentes a serem processados e o botao também que esta processando a chamada
+
+partialSubmit =true
+--no ajax envia na requisicao somente os campos do process
+
+
+
+****2.4****
+partialSubmit global
+--configurar de forma global 
+--envia na requisicao somente os campos do process
+--adicionar no arquivo web.xml
+	<context-param>
+		<param-name>primefaces.SUBMIT</param-name>
+		<param-value>partial</param-value>
+	</context-param>
+
+
+
+****2.5****
+<p:ajaxStatus styleClass="ajax-status">
+--componente global
+--qualquer requisicao ajax irá disparar, nao precisa do update
+--permite indicar a execucao do ajax e mostrar um gif/spinning durante o processamento	
+--quando iniciar a requisicao o start irá mostrar o gif
+--quando finalizar a requisicao o complete irá sobrepor o gif pelo outputText
+--styleClass permite ajustar o gif na posicao da tela
+		<f:facet name="start">				
+			<h:graphicImage library="imagens" name="carregando.gif" />				
+		</f:facet>
+		
+		<f:facet name="complete">
+			<h:outputText value=""/>
+		</f:facet>
+ </p:ajaxStatus>
+ 
+--pode se usar javascript nos eventos
+<!-- <p:ajaxStatus onstart="$('input').css('background-color', 'yellow')"
+	          oncomplete="$('input').css('background-color', '')" /> -->
+
+--pode se usar dialogos nos eventos
+<p:ajaxStatus onstart="dlg.show();" oncomplete="dlg.hide();" />
+<p:dialog widgetVar="dlg" height="100" width="300" resizable="false"
+		closable="false" appendTo="@(Body)" modal="true">
+
+		<h:panelGrid columns="2">
+			<p:outputLabel value="Aguarde" />
+			<h:graphicImage library="imagens" name="carregando.gif" />
+		</h:panelGrid>
+</p:dialog>
+
+ 
+ global=false parametro dentro do p:ajax
+ --nao irá notificar os componentes globais, tipo p:ajaxStatus
+ 
+ 
+ 
+ ****2.8****
+ <p:calendar
+ --colocar um componente de calendario
+ 
+ 
+ 
+ ****2.9****
+ @FacesConverter("interesse")
+ 
+<title><ui:insert name="titulo">Sistema de Pedidos de Venda</ui:insert></title>
+--permite que possa ser inserido um valor aqui, caso nao coloque entao o texto padrao sera  Sistema de Pedidos de Venda
+ 
+ <ui:define name="titulo">#{cadastroProdutoBean.editando? 'Edição de Produto':'Novo Produto'}</ui:define>
+--irá mudar o texto dentro do ui:insert de name=titulo 
+ 
+
+--ajuste de hora para o timezone correto para acertar as 3 horas de diferenca
+<f:convertDateTime locale="pt_BR" />
+ou 
+ <!-- ajuste de hora para o timezone correto para acertar as 3 horas de diferenca, a ser colocado no arquivo web.xml -->
+<context-param>
+    <param-name>javax.faces.DATETIMECONVERTER_DEFAULT_TIMEZONE_IS_SYSTEM_TIMEZONE</param-name>
+    <param-value>true</param-value>
+</context-param>
+ 
+--ajuste de numeros para formato brasileiro
+<f:convertNumber locale="pt_BR" /> 
+ 
+rendered = true ou false
+--exibe o campo ou nao na tela conforme retorno do modelo
+ 
+ 
+ <p:dialog header="texto do titulo" widgetVar="MeuDialogo">
+--widgetVar serve como id para o javascript
+--para exibir antes da versao 4
+<p:button value="abrir"> onclick="MeuDialogo.show();return false;"/>
+<p:button value="fechar"> onclick="MeuDialogo.hide();return false;"/>
+ 
+--para exibir depois da versao 4 
+<p:button value="abrir"> onclick="PF('MeuDialogo').show();return false;"/>
+<p:button value="fechar"> onclick="PF('MeuDialogo').hide();return false;"/>
+ 
+ 
+<f:setPropertyActionListener target="#{produtosBean.produtoSelecionado}" value="#{produto}" />
+--popula e atribui ao modelo no atributo produtoSelecionado o valor de produto, que nesse caso pode ser uma var do dataTable
+ 
+ 
+beans.xml
+--dentro da pasta src/main/resources/META-INF é um arquivo de marcacao e o weld vai entender que usa o cdi\weld, é obrigatorio
+
+Escopos
+quando nao colocar o padrao é @Dependent
+@Dependent --esse bean será dependente de quem o injeta, e usará o seu scope. 
+@Session   --esse bean vale por toda a sessao do usuario e é obrigatorio implements serializable
+
+@PostConstruct
+--é executado após o construtor e injecao de todas as dependencias. 
+
+@Default
+--é a identificacao padrao para métodos produtores ou identificacao de beans
+
+@Qualifier
+@Retention(RetentionPolicy.RUNTIME)
+@Target({ ElementType.TYPE, ElementType.METHOD, ElementType.FIELD,ElementType.PARAMETER })
+public @interface Eua {}
+--cria um qualificador que poderá ser usado para identificar determinado método produtor ou para determinada instancia de bean
+
+@Produces @Eua
+public DateFormat getFormatadorDataEUA() {
+	return new SimpleDateFormat("MMMM dd, yyyy", Locale.US);
+}
+--cria um metodo produtor que retornara uma instancia de classe, seu identificador especificado no caso é @Eua
+ 
+@Inject @Eua
+private DateFormat formatadorData;
+--injeta o bean DateFormat na variavel formatadorData produzido pelo método getFormatadorDataEUA qualificado pela anotacao @Eua  
+
+
+ViewExpiredException e tratamento de outras exceptions
+<!-- Inicio Tratamento das Exceptions com handler customizado no arquivo faces-config.xml-->
+<factory>
+	
+	<exception-handler-factory>
+		br.com.pedidovenda.util.jsf.JsfExceptionHandlerFactory
+	</exception-handler-factory>
+	
+</factory>
+<!-- Fim Tratamento das Exceptions com handler customizado-->
+
+
+
+src/main/resources/br/com/pedidovenda/Messages.properties
+--refere-se as mensagens do bean validator e é a chave para linkar a mensagem do hibernate validator
+--para descobrir as chaves entrar no maven dependencies
+--verificar chave em javax.faces-2.2.9.jar.javax.faces.Messages_pt_BR.properties
+--pegar a ultima chave javax.faces.validator.BeanValidator.MESSAGE={0}
+
+
+--seta arquivo de mensagens customizadas (traduzidas) 
+--colocar no faces-config.xml
+<message-bundle>br.com.pedidovenda.Messages</message-bundle> --refere-se ao arquivo criado acima 
+
+
+src/main/resources/ValidationMessages.properties
+--arquivo com as mensagens customizadas
+--para descobrir as chaves entrar no maven dependencies
+--hibernate validator
+--pacote org.hibernate.validator
+--arquivo ValidationMessages_pt_BR.properties
+
+
+@FacesConverter(forClass=Categoria.class) 
+//especifica diretamente o converter para a classe Categoria
+
+
+Postback
+public static boolean isPostback() {
+	return FacesContext.getCurrentInstance().isPostback();
+}
+--verifica se a requisicao é postback
+--postback sao as requisicoes ajax feitas apos o carregamento inicial da pagina
+
+
+--cria uma anotacao de interceptor
+@InterceptorBinding
+@Retention(RetentionPolicy.RUNTIME)
+@Target({ ElementType.TYPE, ElementType.METHOD })
+public @interface Transactional {}
+
+--cria um interceptor com o qualificador Transacional
+@Interceptor     //cria o interceptor
+@Transactional   //define o nome do qualificador que ira disparar o interceptor
+public class TransactionInterceptor implements Serializable {
+
+--executa o interceptor atraves do qualificador @Transactional
+@Transactional
+public Produto salvar(Produto produto){	
+	Produto produtoExistente = produtoRepositorio.porSku(produto.getSku());	
+	if (produtoExistente != null && !produtoExistente.equals(produto)) {
+		throw new NegocioException("Já existe um produto com o SKU informado.");
+	}	
+	return produtoRepositorio.guardar(produto);	
+}
+
+--precisa adicionar o interceptor no arquivo src/main/resources/META-INF/beans.xml
+<interceptors>
+	<class>br.com.pedidovenda.util.jpa.TransactionInterceptor</class>
+</interceptors>
+
+
+<p:button icon="ui-icon-pencil" title="Editar" outcome="/produtos/CadastroProduto">
+<f:param name="produto" value="#{produto.id}" />
+</p:button>
+--<f:param passa o parametro do id do produto para a pagina de CadastroProduto, na variavel produto
+
+<o:viewParam name="produto" value="#{cadastroProdutoBean.produto}"/> 
+--abre um produto para edicao através de um conversor ProdutoConverter o produto sera carregado automaticamente
+  
+<f:viewAction executa um metodo antes de renderizar a pagina
+--evita que execute processo metodo cadastroProdutoBean.inicializar em postback varias vezes
+--nas requisicoes ajax apos o carregamento da pagina
+
+--PRECISA COLOCAR ESSE IF PARA POPULAR OS COMBO DE CATEGORIA PAI AUTOMATICAMENTE
+public void setProduto(Produto produto) {		
+	this.produto = produto;	
+	if (produto != null){
+		this.categoriaPai = this.produto.getCategoria().getCategoriaPai();
+	}
+}
+
+--PARA POPULAR A SUBCATEGORIA AUTOMATICAMENTE QUANDO NA ALTERACAO
+public void inicializar(){		
+	categoriasRaizes = categoriaRepositorio.raizes();
+	if (this.categoriaPai != null) {
+		filtrarSubCategorias();
+	}
+}
+
+public void filtrarSubCategorias(){		
+	if (categoriaPai==null){
+		listaSubCategorias = new ArrayList<>();
+	}else{
+		listaSubCategorias = categoriaRepositorio.subCategorias(categoriaPai.getId());	
+	}
+}
+	
+--produz um pedido em CadastroPedidoBean que é a referencia em CadastroPedidoBean
+--essa referencia poderá ser injeta atraves de @Inject @PedidoEdicao em outros beans como EmissaoPedidoBean por exemplo	
+@Produces 
+@PedidoEdicao
+private Pedido pedido;	
+
+
+--injeta o PedidoEdicao no bean EmissaoPedidoBean atraves do qualificador @PedidoEdicao
+@Inject
+@PedidoEdicao
+private Pedido pedido;
+
+
+--cria evento do CDI na classe EmissaoPedidoBean para atualizar o pedido que esta no CadastroPedidoBean, 
+--isso irá atualizar o pedido que foi produzido em CadastroPedidoBean e atualizado por EmissaoPedidoBean
+@Inject
+private Event<PedidoAlteradoEvent> pedidoAlteradoEvent;
+
+
+--escuta o evento de alteracao de pedido e atualiza o pedido aqui no bean CadastroPedidoBean
+--esse evento será lancado por EmissaoPedidoBean quando realizar a emissao de pedido
+public void pedidoAlterado(@Observes PedidoAlteradoEvent event){
+	this.pedido = event.getPedido();
+}
+
+--para usar o spring security colocar as dependencias
+--adicionar os listeners no arquivo web.xml
+<!--listener do spring security -->
+<listener>
+	<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+</listener>
+
+<listener>
+	<listener-class>org.springframework.security.web.session.HttpSessionEventPublisher</listener-class>
+</listener>
+
+--adicionar os filtros no arquivo web.xml
+<!--filtro do spring security -->
+<filter>
+	<filter-name>springSecurityFilterChain</filter-name>
+	<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+</filter>
+
+<filter-mapping>
+	<filter-name>springSecurityFilterChain</filter-name>
+	<url-pattern>/*</url-pattern>
+	<dispatcher>FORWARD</dispatcher>
+	<dispatcher>REQUEST</dispatcher>
+</filter-mapping>
+
+ 
+prependId="false" 
+--deixa o nome dos inputs como os nomes dos ids somente 
+
+prependId="true" 
+--deixa o nome dos inputs como :frm:j_username
+
+ignoreAutoUpdate="true"
+--ignora o AutoUpdate do messages
+
+<p:focus
+--se estiver dentro do forms irá coloca o foco no primeiro input que esteja invalido
+
+<p:focus for=":frm:sku"/>
+--se a tag estiver fora do form, entao deve especificar o nome do form e input
+
+
+<p:focus context="frm"/>
+--MAIS USADA coloca dentro do form 
+
+exportable="false"
+-- exportable="false" nao gera a coluna no arquivo excel com o dataExporter
+
+
+
+continuar e inclusive na 20.10
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

@@ -6,6 +6,7 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:o="http://omnifaces.org/ui">
 
+	<!-- coloca o titulo da pagina no layout padrao -->
     <ui:define name="titulo">#{cadastroPedidoBean.editando ? 'Edição de Pedido': 'Novo Pedido'}</ui:define>
     
     <f:metadata>
@@ -19,6 +20,7 @@
 	    	
 	    	<p:messages autoUpdate="true" closable="true"/>
 	    	
+	    	<!-- faz a inclusao da pagina botoes pedidos -->
 	    	<ui:include src="/WEB-INF/template/pedidos/BotoesPedido.xhtml" />
 	    	
 	    	<ui:include src="/WEB-INF/template/pedidos/CapaPedido.xhtml" />

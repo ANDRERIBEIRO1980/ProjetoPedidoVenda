@@ -9,7 +9,7 @@ import br.com.pedidovenda.model.Categoria;
 import br.com.pedidovenda.repository.CategoriaRepository;
 import br.com.pedidovenda.util.cdi.CDIServiceLocator;
 
-@FacesConverter(forClass=Categoria.class)
+@FacesConverter(forClass=Categoria.class) //especifica diretamente o converter para a classe Categoria
 public class CategoriaConverter implements Converter{
 
 	//@Inject NÃO É POSSIVEL INJETAR DEPENDENCIAS EM CONVERSORES

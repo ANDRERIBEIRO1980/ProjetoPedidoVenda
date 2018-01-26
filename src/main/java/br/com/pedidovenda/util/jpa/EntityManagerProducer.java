@@ -8,7 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-@ApplicationScoped
+@ApplicationScoped//para colocar a factory no escopo de application
 public class EntityManagerProducer {
 	
 	private EntityManagerFactory factory;
@@ -18,12 +18,12 @@ public class EntityManagerProducer {
 	}
 	
 	@Produces
-	@RequestScoped
+	@RequestScoped //esse método tem scopo de requisicao, apos a requisicao esse metodo sera descartado
 	public EntityManager createEntityManager(){
 		return factory.createEntityManager();
 	}
 	
-		
+	//@Disposes fecha a manager ao final da requisicao	
 	public void closeEntityManager(@Disposes EntityManager manager){
 		manager.close();
 	}

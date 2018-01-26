@@ -48,9 +48,7 @@ public class CadastroClienteBean implements Serializable{
 	}
 	
 	public void prepararNovoEndereco() {
-		System.out.println("inicio preparar novo endereco");
 		   this.endereco = new Endereco();
-		   System.out.println("fim preparar novo endereco");	   
 	}
 	
 	public void incluiEndereco(){		

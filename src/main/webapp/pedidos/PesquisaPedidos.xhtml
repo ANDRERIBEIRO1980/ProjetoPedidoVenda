@@ -75,7 +75,7 @@
 	    	<p:dataTable id="pedidosTable" value="#{pesquisaPedidosBean.model}" var="pedido"
 	    		style="margin-top: 20px" emptyMessage="Nenhum pedido encontrado."
 	    		lazy="true"
-	    		rows="10" paginator="true" paginatorAlwaysVisible="false" paginatorPosition="bottom">
+	    		rows="5" paginator="true" paginatorAlwaysVisible="false" paginatorPosition="bottom">
 	    		
 	    		<p:column headerText="Número" style="text-align: center; width: 100px"
 	    		     sortBy="#{pedido.id}">
@@ -108,6 +108,7 @@
 	    			<h:outputText value="#{pedido.status.descricao}"/>
 	    		</p:column>
 
+				<!-- exportable="false" nao gera a coluna no arquivo excel -->
 	    		<p:column style="text-align: center; width: 50px" exportable="false">
 	    		
 	    			<p:button icon="ui-icon-pencil" title="Editar"

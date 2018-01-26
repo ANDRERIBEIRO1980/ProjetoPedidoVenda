@@ -13,10 +13,10 @@ import javax.validation.constraints.Pattern;
 @Target({ ElementType.FIELD, ElementType.METHOD, ElementType.ANNOTATION_TYPE })
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = {})
-@Pattern(regexp = "([a-zA-Z]{2}\\d{4,18})?") //valida através desse Pattern de expressao regular
+@Pattern(regexp = "([a-zA-Z]{2}\\d{4,18})?") //valida através desse Pattern de expressao regular, ? significa se informar valida, se nao informar nao valida
 public @interface SKU {
 
-	@OverridesAttribute(constraint = Pattern.class, name = "message")
+	@OverridesAttribute(constraint = Pattern.class, name = "message")//obrigatorio para atribuir a mensagem abaixo na mensagem do pattern
 	//captura a mensagem que está na chave do arquivo src/main/resources/ValidationMessages.properties 
 	String message() default "{br.com.pedidovenda.constraints.SKU.message}";
 	

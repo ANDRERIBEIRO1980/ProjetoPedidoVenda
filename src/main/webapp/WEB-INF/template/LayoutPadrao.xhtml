@@ -7,24 +7,52 @@
       xmlns:p="http://primefaces.org/ui">   
       
 	<h:head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />      
+          
+        <!-- <ui:insert permite que possa ser inserido um valor aqui, caso nao coloque entao o texto padrao sera  Sistema de Pedidos de Venda-->        
         <title><ui:insert name="titulo">Sistema de Pedidos de Venda</ui:insert></title>
+
+        <!-- <h:outputStylesheet adiciona um arquivo css que estará na pasta padrao src/main/webapp/resources/css-->        
         <h:outputStylesheet library="css" name="sistema.css" />
+        
+        <!-- <h:outputStylesheet adiciona um arquivo css que estará na pasta padrao src/main/webapp/resources/js-->
         <h:outputScript library="js" name="jquery.maskMoney.js"/>
         <h:outputScript library="js" name="mensagens-validacao-cliente-side.js"/>
+                
 	</h:head>
 
 	<h:body>
 		
+		<!--
+		ajaxStatus padrao para todas as paginas nas requisicoes ajax, 
+		para mostrar o gif de executando enquanto a requisicao estiver em andamento 
+		onsucess deve reconfigurar os inputs com a classe de marcacao moeda,
+		pois ao atualizar o form e re-renderizar os componentes, os mesmos perdem a configuracao do maskMoney
+		-->
 		<p:ajaxStatus styleClass="ajax-status" onsuccess="setTimeout(configurarMoeda, 500)" >
+		    
+		    <!-- quando inicar a requisicao mostra o gif -->
 			<f:facet name="start">
 				<h:graphicImage library="images" name="loading.gif"/>
 			</f:facet>
+			
+			<!-- quando finalizar a requisicao, coloca o outputText para sobrepor o gif animado-->
 			<f:facet name="complete">
 				<h:outputText value=""/>
 			</f:facet>
-		</p:ajaxStatus>
+		</p:ajaxStatus> 
+		
+		<!-- ou dessa forma travando a tela e mostrando um gif, e ainda pode colocar um dialog modal -->
+		<!-- <p:ajaxStatus onsuccess="setTimeout(configurarMoeda, 500)" >
+			<f:facet name="start">
+				<div style="opacity: 0.4; position: absolute; bottom: 0; top: 0; left: 0; background-color: black; width: 100%; z-index: 5000">
+					<h:graphicImage library="images" name="loading.gif"/>
+				</div>
+			</f:facet>
+			<f:facet name="complete"></f:facet>
+		</p:ajaxStatus> -->
 	
+		<!-- inicio header e menu -->	
 		<header>
 		 	<div style="float: left">
 				<h:link outcome="/Home">
@@ -57,20 +85,23 @@
 						
 						<p:menuitem value="Sair" url="/j_spring_security_logout" />
 						
-						
-						
 					</p:menubar>
 				</h:form>
 			</div>
 			<div style="clear: both"></div>
 		</header>
-
+		
+		<!-- fim header e menu -->
+		
 		<div id="conteudo">
-			<ui:insert name="corpo"/>
+		        <!-- <ui:insert permite que possa ser inserido um valor aqui, nesse caso o conteuda das paginas-->        
+				<ui:insert name="corpo"/>
 		</div>
 		
-		<p:separator style="margin-top: 20px"/>
+		<!-- cria uma linha -->
+		<p:separator style="margin-top: 20px"/>		
 		
+		<!-- rodape das paginas -->
 		<footer>
 			Andre Santos -
 			<a href="http://bit.ly/Y8saFl" target="_blank">www.aaa.com</a>
@@ -78,15 +109,17 @@
 		
 		<script>
 		
-		
+			/* todas os inputs que tiverem a classe de marcacao moeda irao usar o maskMoney */
 			function configurarMoeda() {
 				$(".moeda").maskMoney({ decimal: ",", thousands: ".", allowZero: true });
 			}
 			
+			/* quando finalizar o carregamento da pagina */
 			$(document).ready(function() {
 				configurarMoeda();
 			});
 		</script>
+		
 	</h:body>
 	
 </html>

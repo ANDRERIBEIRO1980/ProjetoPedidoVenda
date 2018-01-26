@@ -77,7 +77,7 @@ public class Produto implements Serializable{
 		this.valorUnitario = valorUnitario;
 	}
 	
-	@NotNull(message="é obrigatório")
+	@NotNull(message="é obrigatório") //mensagem customizada para esse atributo
 	@Min(0)
 	@Max(value=9999, message="tem um valor muito alto")
 	@Column(name="quantidade_estoque", nullable=false, length=5)

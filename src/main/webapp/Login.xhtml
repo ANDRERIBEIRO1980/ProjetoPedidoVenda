@@ -22,8 +22,15 @@
     	<div id="login-dialog">
     		<h1>Login</h1>
     		
+    		<!-- 
+    		prependId="false" deixa o nome dos inputs como os nomes dos ids somente 
+    		prependId="true" deixa o nome dos inputs como :frm:j_username    		
+    		na pagina de login com o spring security os campos devem ter os nomes j_username e j_password
+    		ajax deve ser igual a false na pagina de login
+    		-->
     		<h:form id="frm" prependId="false">
     		
+    			<!-- closable="true" permite fechar a mensagem-->
     			<p:messages id="messages" autoUpdate="true" closable="true" />
     		
     			<h:panelGrid columns="2" styleClass="grid-login">

@@ -5,8 +5,10 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 
+	<!-- titulo que sera incluido na <ui:insert de name = titulo do layoutpadrao.xhtml -->
 	<ui:define name="titulo">Pesquisa Produtos</ui:define>
 
+	<!-- inicio corpo que sera incluido no template <ui:insert de name = corpo do  layoutpadrao -->
 	<ui:define name="corpo">
 
 		<p:focus />
@@ -79,8 +81,8 @@
 
 				<p:column style="width: 100px; text-align: center">
 
-					<p:button icon="ui-icon-pencil" title="Editar"
-						outcome="/produtos/CadastroProduto">
+					<p:button icon="ui-icon-pencil" title="Editar" outcome="/produtos/CadastroProduto">
+						<!-- passa o parametro do id do produto para a pagina de CadastroProduto, na variavel produto -->
 						<f:param name="produto" value="#{produto.id}" />
 					</p:button>
 
@@ -113,4 +115,6 @@
 		</h:form>
 
 	</ui:define>
+	<!-- fim do corpo que sera incluido no template <ui:insert de name = corpo  layoutpadrao -->
+	
 </ui:composition>

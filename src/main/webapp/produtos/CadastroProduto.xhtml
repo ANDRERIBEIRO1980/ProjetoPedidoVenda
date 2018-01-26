@@ -6,11 +6,21 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:o="http://omnifaces.org/ui">
 
+	<!-- titulo que sera incluido na <ui:insert de name = titulo do layoutpadrao.xhtml -->
     <ui:define name="titulo">#{cadastroProdutoBean.editando? 'Edição de Produto':'Novo Produto'}</ui:define>
     
+    <!-- inicio corpo que sera incluido na <ui:insert de name = corpo do layoutpadrao.xhtml -->
     <ui:define name="corpo">
-
-           <f:metadata>
+		   
+		      <!-- o:viewParam name="produto" value="#{cadastroProdutoBean.produto}" abre um produto para edicao
+		           através de um conversor ProdutoConverter o produto sera carregado automaticamente
+		      -->
+		      
+              <!-- f:viewAction executa um metodo antes de renderizar a pagina
+                   evita que execute processo metodo cadastroProdutoBean.inicializar em postback
+                   nas requisicoes ajax apos o carregamento da pagina
+              -->    
+			<f:metadata>
                 <o:viewParam name="produto" value="#{cadastroProdutoBean.produto}"/>
               	<f:viewAction action="#{cadastroProdutoBean.inicializar}"  />
            </f:metadata>
@@ -25,19 +35,23 @@
 		   	
 		    	<p:toolbar style="margin-top: 20px">
 		    		<p:toolbarGroup>
+		    		    <!-- botao que nao executa acao, apenas recarrega a pagina limpando o modelo -->
 		    			<p:button value="Novo" outcome="/produtos/CadastroProduto"/>
+		    			
 		    			<p:commandButton value="Salvar" id="botaoSalvar"
 		    			         action="#{cadastroProdutoBean.salvar}"		
 		    			         update="@form"    			      
 		    			         />
+		    			         
 		    		</p:toolbarGroup>
 		    		<p:toolbarGroup align="right">
 		    			<p:button value="Pesquisa" outcome="/produtos/PesquisaProdutos"/>
 		    		</p:toolbarGroup>
 		    	</p:toolbar>
 		    	
-		    	<p:panelGrid columns="2" id="painel" style="width: 100%; margin-top: 20px"
-		    			columnClasses="rotulo, campo">
+		    	<!-- columnClasses ira colocar as classes nas sequencias das colunas, ou seja rotulo ficará na coluna de titulo e campo na coluna de sku -->
+		    	<p:panelGrid columns="2" id="painel" style="width: 100%; margin-top: 20px" columnClasses="rotulo, campo">
+		    			
 		    		<p:outputLabel value="SKU" for="sku"/>
 		    		<p:inputText id="sku" size="20" maxlength="20"
 		    		        value="#{cadastroProdutoBean.produto.sku}"/>
@@ -79,4 +93,5 @@
 		    	</p:panelGrid>
 		    </h:form>	
     </ui:define>
+    <!-- fim corpo que sera incluido na <ui:insert de name = corpo do layoutpadrao.xhtml -->
 </ui:composition>

@@ -13,7 +13,6 @@ import br.com.pedidovenda.util.jsf.FacesUtil;
 
 @Named
 @RequestScoped
-
 public class CancelamentoPedidoBean implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -21,9 +20,12 @@ public class CancelamentoPedidoBean implements Serializable{
 	@Inject
 	private CancelamentoPedidoService cancelamentoPedidoService;
 	
+	//cria evento do CDI para atualizar o pedido que esta no CadastroPedidoBean, 
+	//isso irá atualizar o pedido que foi produzido em CadastroPedidoBean e atualizado em CancelamentoPedidoBean
 	@Inject
 	private Event<PedidoAlteradoEvent> pedidoAlteradoEvent;
 	
+	//injeta o Pedido com a mesma referencia que foi produzido no bean CadastroPedidoBean
 	@Inject
 	@PedidoEdicao
 	private Pedido pedido;

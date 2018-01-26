@@ -10,6 +10,12 @@
 		<welcome-file>Home.xhtml</welcome-file>
 	</welcome-file-list>
 	
+	<!-- ajuste de hora para o timezone correto para acertar as 3 horas de diferenca -->
+	<!-- <context-param>
+        <param-name>javax.faces.DATETIMECONVERTER_DEFAULT_TIMEZONE_IS_SYSTEM_TIMEZONE</param-name>
+        <param-value>true</param-value>
+    </context-param> -->
+	
 	<!-- para uso do JAX-RS Jersey -->
 	<servlet>
 		<servlet-name>Jersey Web Application</servlet-name>
@@ -91,5 +97,10 @@
 		usando o handler de exception padrao do primefaces -->
 	<!-- <error-page> <exception-type>java.lang.Throwable</exception-type> <location>/Erro.xhtml</location> 
 		</error-page> -->
+		
+		<!-- sessao irá expirar em 15 minutos apos ultima requisicao -->
+		<session-config>
+			   <session-timeout>15</session-timeout>
+		</session-config>
 
 </web-app>

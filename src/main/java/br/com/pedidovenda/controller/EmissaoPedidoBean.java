@@ -20,22 +20,26 @@ public class EmissaoPedidoBean implements Serializable {
 	@Inject
 	private EmissaoPedidoService emissaoPedidoService;
 
+	//injeta o Pedido com a mesma referencia que foi produzido no bean CadastroPedidoBean
 	@Inject
 	@PedidoEdicao
 	private Pedido pedido;
 
+	//cria evento do CDI para atualizar o pedido que esta no CadastroPedidoBean, 
+	//isso irá atualizar o pedido que foi produzido em CadastroPedidoBean e atualizado em EmissaoPedidoBean
 	@Inject
 	private Event<PedidoAlteradoEvent> pedidoAlteradoEvent;
 
 	public void emitirPedido() {
-
+		
+		//mesma referencia de CadastroPedidoBean
 		this.pedido.removerItemVazio();
 
 		try {
 
 			this.pedido = this.emissaoPedidoService.emitir(this.pedido);
 
-			// lançar um evento CDI
+			// lança um evento CDI para atualizar o pedido em CadastroPedidoBean
 			this.pedidoAlteradoEvent.fire(new PedidoAlteradoEvent(this.pedido));
 
 			FacesUtil.addInfoMessage("Pedido emitido com sucesso.");

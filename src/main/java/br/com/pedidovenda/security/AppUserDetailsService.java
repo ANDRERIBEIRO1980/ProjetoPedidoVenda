@@ -20,6 +20,9 @@ public class AppUserDetailsService implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 		
+		//nao é possivel injetar nessa classe, 
+		//pois esta fora do contexto do cdi, 
+		//esta no contexto do spring
 		UsuarioRepository usuarios = CDIServiceLocator.getBean(UsuarioRepository.class);
 		Usuario usuario = usuarios.porEmail(email);
 		

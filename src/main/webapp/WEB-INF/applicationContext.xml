@@ -6,7 +6,7 @@
            http://www.springframework.org/schema/security
            http://www.springframework.org/schema/security/spring-security-3.1.xsd">
     
-	<!-- classe que fará o carregamento e validação das permissões\autorizados do banco de dados do usuário-->
+	<!-- classe que fará o carregamento e validação das permissões\autorizacoes do banco de dados do usuário-->
     <beans:bean id="appUserDetailsService" class="br.com.pedidovenda.security.AppUserDetailsService" />
     
     <!-- libera o acesso das pastas de recurso, login e de erro para todos os usuários css, images etc -->
@@ -16,21 +16,28 @@
     <http pattern="/Login.xhtml" security="none" />
     <http pattern="/Erro.xhtml" security="none" />
     
-        
+    <!-- auto-config="false" nao gera tela de login automatica -->
+    <!-- use-expressions="true" para usar expressoes de acesso -->    
 	<http auto-config="false" use-expressions="true">	
 	
 	    <custom-filter ref="exceptionTranslationFilter" before="FILTER_SECURITY_INTERCEPTOR" />
+
+		<!-- permissoes para quem estiver logado-->
 		<intercept-url pattern="/Home.xhtml" access="isAuthenticated()" />
 		<intercept-url pattern="/AcessoNegado.xhtml" access="isAuthenticated()" />
 		<intercept-url pattern="/dialogos/**" access="isAuthenticated()" />
+		
+		<!-- permissoes por roles -->
 		<intercept-url pattern="/pedidos/**" access="hasAnyRole('VENDEDORES', 'AUXILIARES', 'ADMINISTRADORES')" />		
 		<intercept-url pattern="/produtos/**" access="hasAnyRole('ADMINISTRADORES')" />
 		<intercept-url pattern="/clientes/**" access="hasAnyRole('ADMINISTRADORES')" />
 		<intercept-url pattern="/usuarios/**" access="hasAnyRole('ADMINISTRADORES')" />
 		<intercept-url pattern="/relatorios/**" access="hasAnyRole('ADMINISTRADORES')" />
+	
+		<!-- nega todas restantes as paginas -->
 		<intercept-url pattern="/**" access="denyAll" />
 		
-		<!--pagina de login inicial  -->
+		<!--pagina customizada de login inicial  -->
 		<form-login login-page="/Login.xhtml" 
 		            authentication-failure-url="/Login.xhtml?invalid=true" 
 			        default-target-url="/" 
@@ -42,6 +49,7 @@
 	</http>
 	
 	<authentication-manager>
+	    <!-- mesmo nome do bean configurado acima para AppUserDetailService -->
 		<authentication-provider user-service-ref="appUserDetailsService">
 			<!-- <password-encoder hash="md5" /> -->
 		</authentication-provider>
