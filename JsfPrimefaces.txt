@@ -1,6 +1,10 @@
 INSTALAR JAR PARA O ORACLE
 install:install-file -Dfile=C:\AmbienteJava\ojdbc6.jar -DgroupId=oracle -DartifactId=ojdbc6 -Dversion=11.2.0.3 -Dpackaging=jar
 
+copiar arquivos para o diretorio de lib do tomcat D:\apache-tomcat-9.0.0.M21\lib
+mchange-commons-java-0.2.11.jar
+c3p0-0.9.5.2.jar
+ojdbc6.jar
 
 ****2.2****
 update = "dataValidade" 		--atualiza o campo com o id "dataValidade" id do servidor com os dados do modelo atualizado
