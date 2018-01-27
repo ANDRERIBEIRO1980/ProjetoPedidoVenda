@@ -6,6 +6,20 @@ mchange-commons-java-0.2.11.jar
 c3p0-0.9.5.2.jar
 ojdbc6.jar
 
+apos a primeira execucao para criacao das tabelas, executar os inserts abaixo
+insert into categoria (id,descricao) values (categoria_Seq.nextval,'Refrigerantes');
+insert into categoria (id,descricao, categoria_pai_id) values (categoria_Seq.nextval,'Coca-Cola',1);
+INSERT INTO GRUPO (ID,DESCRICAO,NOME) VALUES (GRUPO_SEQ.NEXTVAL,'ADMINISTRADORES','ADMINISTRADORES');
+INSERT INTO GRUPO (ID,DESCRICAO,NOME) VALUES (GRUPO_SEQ.NEXTVAL,'VENDEDORES','VENDEDORES');
+INSERT INTO GRUPO (ID,DESCRICAO,NOME) VALUES (GRUPO_SEQ.NEXTVAL,'GERENTE','GERENTE');
+INSERT INTO GRUPO (ID,DESCRICAO,NOME) VALUES (GRUPO_SEQ.NEXTVAL,'CORRETOR','CORRETOR');
+insert into usuario (id,nome, email, senha) values (usuario_Seq.nextval,'Andre', 'andre@gmail.com', '123');
+insert into USUARIO_GRUPO (1,1);
+insert into USUARIO_GRUPO (1,2);
+insert into USUARIO_GRUPO (1,3);
+insert into USUARIO_GRUPO (1,4);
+
+
 ****2.2****
 update = "dataValidade" 		--atualiza o campo com o id "dataValidade" id do servidor com os dados do modelo atualizado
 update = "frm:dataValidade"		--atualiza o campo com o id "dataValidade" id do client com os dados do modelo atualizado
