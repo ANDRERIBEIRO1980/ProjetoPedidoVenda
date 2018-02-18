@@ -37,7 +37,7 @@
 			    </executions>			    
             </plugin>
             
-            <!--plugin para verificacao\visualização dos codigos executados\testados com cores-->
+            <!--plugin   para verificacao\visualização dos codigos executados\testados com cores-->
             <plugin>
 		      <groupId>org.jacoco</groupId>
 		      <artifactId>jacoco-maven-plugin</artifactId>
